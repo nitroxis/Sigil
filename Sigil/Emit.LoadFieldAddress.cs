@@ -26,10 +26,25 @@ namespace Sigil
 
             if (!field.IsStatic)
             {
-                var transitions =
-                    new[] {
-                        new StackTransition(new [] { field.DeclaringType }, new [] { field.FieldType.MakeByRefType() })
-                    };
+                StackTransition[] transitions;
+                if (TypeHelpers.IsValueType(field.DeclaringType))
+                {
+                    transitions =
+                        new[]
+                        {
+                            // This transition isn't really to spec... but it seems to work consistently in .NET soooo.... yeah
+                            new StackTransition(new [] { field.DeclaringType }, new [] { field.FieldType.MakeByRefType() }),
+                            new StackTransition(new [] { field.DeclaringType.MakePointerType() }, new [] { field.FieldType.MakeByRefType() })
+                        };
+                }
+                else
+                {
+                    transitions =
+                        new[]
+                        {
+                            new StackTransition(new [] { field.DeclaringType }, new [] { field.FieldType.MakeByRefType() })
+                        };
+                }
 
                 UpdateState(OpCodes.Ldflda, field, Wrap(transitions, "LoadFieldAddress"));
             }
