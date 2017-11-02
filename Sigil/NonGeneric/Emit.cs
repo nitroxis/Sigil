@@ -120,7 +120,7 @@ namespace Sigil.NonGeneric
             return ret;
         }
 
-        private void ValidateDelegateType(Type delegateType)
+        private void ValidateDelegateType(Type delegateType, object target)
         {
             var baseTypes = new LinqHashSet<Type>();
             baseTypes.Add(delegateType);
@@ -145,8 +145,9 @@ namespace Sigil.NonGeneric
             }
 
             var parameterTypes = invoke.GetParameters();
+            var parameterSkip = target == null ? 0 : 1;
 
-            if (parameterTypes.Length != ParameterTypes.Length)
+            if (parameterTypes.Length + parameterSkip != ParameterTypes.Length)
             {
                 throw new ArgumentException("Expected delegateType to take " + ParameterTypes.Length + " parameters, found " + parameterTypes.Length);
             }
@@ -154,7 +155,7 @@ namespace Sigil.NonGeneric
             for (var i = 0; i < parameterTypes.Length; i++)
             {
                 var actualType = parameterTypes[i].ParameterType;
-                var expectedType = ParameterTypes[i];
+                var expectedType = ParameterTypes[parameterSkip + i];
 
                 if (actualType != expectedType)
                 {
@@ -177,14 +178,14 @@ namespace Sigil.NonGeneric
         /// the returned delegate fails validation (indicative of a bug in Sigil) or
         /// behaves unexpectedly (indicative of a logic bug in the consumer code).
         /// </summary>
-        public Delegate CreateDelegate(Type delegateType, out string instructions, OptimizationOptions optimizationOptions = OptimizationOptions.All)
+        public Delegate CreateDelegate(Type delegateType, object target, out string instructions, OptimizationOptions optimizationOptions = OptimizationOptions.All)
         {
             if (EmitType != NonGenericEmitType.DynamicMethod)
             {
                 throw new InvalidOperationException("Emit was not created to build a DynamicMethod, thus CreateDelegate cannot be called");
             }
 
-            ValidateDelegateType(delegateType);
+            ValidateDelegateType(delegateType, target);
 
             if (InnerEmit.DynMethod == null)
             {
@@ -199,11 +200,44 @@ namespace Sigil.NonGeneric
                 return CreatedDelegate;
             }
 
-            CreatedDelegate = InnerEmit.InnerCreateDelegate(delegateType, out instructions, optimizationOptions);
+            CreatedDelegate = InnerEmit.InnerCreateDelegate(delegateType, target, out instructions, optimizationOptions);
 
             return CreatedDelegate;
         }
 
+        /// <summary>
+        /// Converts the CIL stream into a delegate.
+        /// 
+        /// Validation that cannot be run until a method is finished is run, and various instructions
+        /// are re-written to choose "optimal" forms (Br may become Br_S, for example).
+        /// 
+        /// Once this method is called the Emit may no longer be modified.
+        /// 
+        /// `instructions` will be set to a representation of the instructions making up the returned delegate.
+        /// Note that this string is typically *not* enough to regenerate the delegate, it is available for
+        /// debugging purposes only.  Consumers may find it useful to log the instruction stream in case
+        /// the returned delegate fails validation (indicative of a bug in Sigil) or
+        /// behaves unexpectedly (indicative of a logic bug in the consumer code).
+        /// </summary>
+        public Delegate CreateDelegate(Type delegateType, out string instructions, OptimizationOptions optimizationOptions = OptimizationOptions.All)
+        {
+            return CreateDelegate(delegateType, null, out instructions, optimizationOptions);
+        }
+        
+        /// <summary>
+        /// Converts the CIL stream into a delegate.
+        /// 
+        /// Validation that cannot be run until a method is finished is run, and various instructions
+        /// are re-written to choose "optimal" forms (Br may become Br_S, for example).
+        /// 
+        /// Once this method is called the Emit may no longer be modified.
+        /// </summary>
+        public Delegate CreateDelegate(Type delegateType, object target, OptimizationOptions optimizationOptions = OptimizationOptions.All)
+        {
+            string ignored;
+            return CreateDelegate(delegateType, target, out ignored, optimizationOptions);
+        }
+        
         /// <summary>
         /// Converts the CIL stream into a delegate.
         /// 
@@ -232,11 +266,44 @@ namespace Sigil.NonGeneric
         /// the returned delegate fails validation (indicative of a bug in Sigil) or
         /// behaves unexpectedly (indicative of a logic bug in the consumer code).
         /// </summary>
+        public DelegateType CreateDelegate<DelegateType>(object target, out string instructions, OptimizationOptions optimizationOptions = OptimizationOptions.All)
+        {
+            return (DelegateType)(object)CreateDelegate(typeof(DelegateType), target, out instructions, optimizationOptions);
+        }
+
+        /// <summary>
+        /// Converts the CIL stream into a delegate.
+        /// 
+        /// Validation that cannot be run until a method is finished is run, and various instructions
+        /// are re-written to choose "optimal" forms (Br may become Br_S, for example).
+        /// 
+        /// Once this method is called the Emit may no longer be modified.
+        /// 
+        /// `instructions` will be set to a representation of the instructions making up the returned delegate.
+        /// Note that this string is typically *not* enough to regenerate the delegate, it is available for
+        /// debugging purposes only.  Consumers may find it useful to log the instruction stream in case
+        /// the returned delegate fails validation (indicative of a bug in Sigil) or
+        /// behaves unexpectedly (indicative of a logic bug in the consumer code).
+        /// </summary>
         public DelegateType CreateDelegate<DelegateType>(out string instructions, OptimizationOptions optimizationOptions = OptimizationOptions.All)
         {
             return (DelegateType)(object)CreateDelegate(typeof(DelegateType), out instructions, optimizationOptions);
         }
 
+        /// <summary>
+        /// Converts the CIL stream into a delegate.
+        /// 
+        /// Validation that cannot be run until a method is finished is run, and various instructions
+        /// are re-written to choose "optimal" forms (Br may become Br_S, for example).
+        /// 
+        /// Once this method is called the Emit may no longer be modified.
+        /// </summary>
+        public DelegateType CreateDelegate<DelegateType>(object target, OptimizationOptions optimizationOptions = OptimizationOptions.All)
+        {
+            string ignored;
+            return CreateDelegate<DelegateType>(target, out ignored, optimizationOptions);
+        }
+        
         /// <summary>
         /// Converts the CIL stream into a delegate.
         /// 
