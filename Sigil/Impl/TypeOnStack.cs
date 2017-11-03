@@ -61,7 +61,7 @@ namespace Sigil.Impl
 
         public bool IsReference { get { return Type.IsByRef; } }
         public bool IsPointer { get { return Type.IsPointer; } }
-        public bool IsPointerToValueType { get { return Type.IsPointer && Type.GetElementType().IsValueType; } }
+        public bool IsPointerToValueType { get { return Type.IsPointer && TypeHelpers.IsValueType(Type.GetElementType()); } }
         public bool IsInterface { get { return TypeHelpers.IsInterface(Type); } }
         public bool IsArray { get { return Type.IsArray; } }
 
