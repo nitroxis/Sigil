@@ -21,7 +21,7 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (unaligned.HasValue && (unaligned != 1 && unaligned != 2 && unaligned != 4))

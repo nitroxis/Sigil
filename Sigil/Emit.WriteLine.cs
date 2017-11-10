@@ -16,12 +16,12 @@ namespace Sigil
         {
             if (line == null)
             {
-                throw new ArgumentNullException("line");
+                throw new ArgumentNullException(nameof(line));
             }
 
             if (locals == null)
             {
-                throw new ArgumentNullException("locals");
+                throw new ArgumentNullException(nameof(locals));
             }
 
             var unowned = LinqAlternative.Cast<IOwned>(locals).FirstOrDefault(l => l.Owner != this);

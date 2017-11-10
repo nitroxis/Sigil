@@ -25,7 +25,7 @@ namespace Sigil
         {
             if (valueType == null)
             {
-                throw new ArgumentNullException("valueType");
+                throw new ArgumentNullException(nameof(valueType));
             }
 
             if (!TypeHelpers.IsValueType(valueType) || valueType.IsByRef || valueType.IsPointer)
@@ -64,7 +64,7 @@ namespace Sigil
         {
             if (valueType == null)
             {
-                throw new ArgumentNullException("valueType");
+                throw new ArgumentNullException(nameof(valueType));
             }
 
             if (valueType.IsByRef || valueType.IsPointer)

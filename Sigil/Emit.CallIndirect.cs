@@ -274,12 +274,12 @@ namespace Sigil
         {
             if (returnType == null)
             {
-                throw new ArgumentNullException("returnType");
+                throw new ArgumentNullException(nameof(returnType));
             }
 
             if (parameterTypes == null)
             {
-                throw new ArgumentNullException("parameterTypes");
+                throw new ArgumentNullException(nameof(parameterTypes));
             }
 
             var known = CallingConventions.Any | CallingConventions.ExplicitThis | CallingConventions.HasThis | CallingConventions.Standard | CallingConventions.VarArgs;
@@ -287,7 +287,7 @@ namespace Sigil
 
             if ((callConventions & known) != 0)
             {
-                throw new ArgumentException("Unexpected value not in CallingConventions", "callConventions");
+                throw new ArgumentException("Unexpected value not in CallingConventions", nameof(callConventions));
             }
 
             if (!AllowsUnverifiableCIL)

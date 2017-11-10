@@ -51,7 +51,7 @@ namespace Sigil.NonGeneric
         {
             if (emit == null)
             {
-                throw new ArgumentNullException("emit");
+                throw new ArgumentNullException(nameof(emit));
             }
             
             MethodInfo methodInfo = emit.InnerEmit.MtdBuilder ?? (MethodInfo)emit.InnerEmit.DynMethod;

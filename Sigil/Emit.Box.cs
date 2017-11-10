@@ -22,12 +22,12 @@ namespace Sigil
         {
             if (valueType == null)
             {
-                throw new ArgumentNullException("valueType");
+                throw new ArgumentNullException(nameof(valueType));
             }
 
             if (!TypeHelpers.IsValueType(valueType) || valueType == typeof(void))
             {
-                throw new ArgumentException("Only ValueTypes can be boxed, found " + valueType, "valueType");
+                throw new ArgumentException("Only ValueTypes can be boxed, found " + valueType, nameof(valueType));
             }
 
             if (!AllowsUnverifiableCIL && valueType.IsByRef)

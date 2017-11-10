@@ -226,7 +226,7 @@ namespace Sigil
         {
             if (info == null)
             {
-                throw new System.ArgumentNullException("info");
+                throw new System.ArgumentNullException(nameof(info));
             }
 
             base.GetObjectData(info, context);

@@ -728,12 +728,12 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             CheckAttributesAndConventions(attributes, callingConvention);
@@ -800,7 +800,7 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             CheckAttributesAndConventions(attributes, callingConvention);
@@ -855,7 +855,7 @@ namespace Sigil
         {
             if (type == null) 
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             ValidateNewParameters<DelegateType>();

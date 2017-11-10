@@ -91,7 +91,7 @@ namespace Sigil
         {
             if (emit == null)
             {
-                throw new ArgumentNullException("emit");
+                throw new ArgumentNullException(nameof(emit));
             }
 
             MethodInfo methodInfo = emit.MtdBuilder ?? (MethodInfo)emit.DynMethod;
@@ -175,7 +175,7 @@ namespace Sigil
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method");
+                throw new ArgumentNullException(nameof(method));
             }
 
             if (HasFlag(method.CallingConvention, CallingConventions.VarArgs) && !HasFlag(method.CallingConvention, CallingConventions.Standard))
@@ -261,7 +261,7 @@ namespace Sigil
         {
             if (cons == null)
             {
-                throw new ArgumentNullException("cons");
+                throw new ArgumentNullException(nameof(cons));
             }
 
             if (HasFlag(cons.CallingConvention, CallingConventions.VarArgs) && !HasFlag(cons.CallingConvention, CallingConventions.Standard))

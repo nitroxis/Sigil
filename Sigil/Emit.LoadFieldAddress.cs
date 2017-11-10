@@ -16,7 +16,7 @@ namespace Sigil
         {
             if (field == null)
             {
-                throw new ArgumentNullException("field");
+                throw new ArgumentNullException(nameof(field));
             }
 
             if (!AllowsUnverifiableCIL && field.IsInitOnly)

@@ -67,15 +67,15 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> Where<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<T>.For(_Where(e, p));
         }
 
         public static int Count<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             int ret = 0;
 
@@ -92,8 +92,8 @@ namespace Sigil.Impl
 
         public static int Count<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             int ret = 0;
 
@@ -113,8 +113,8 @@ namespace Sigil.Impl
 
         public static bool Any<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             var asList = e as IList<T>;
             if (asList != null)
@@ -154,8 +154,8 @@ namespace Sigil.Impl
 
         public static LinqRoot<V> Select<T, V>(IEnumerable<T> e, SigilFunc<T, V> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<V>.For(_Select(e, p));
         }
@@ -175,8 +175,8 @@ namespace Sigil.Impl
 
         public static LinqRoot<V> Select<T, V>(IEnumerable<T> e, SigilFunc<T, int, V> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<V>.For(_Select(e, p));
         }
@@ -220,9 +220,9 @@ namespace Sigil.Impl
 
         public static LinqDictionary<Key, Value> ToDictionary<T, Key, Value>(IEnumerable<T> e, SigilFunc<T, Key> k, SigilFunc<T, Value> v)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (k == null) throw new ArgumentNullException("k");
-            if (v == null) throw new ArgumentNullException("v");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (k == null) throw new ArgumentNullException(nameof(k));
+            if (v == null) throw new ArgumentNullException(nameof(v));
 
             var ret = new LinqDictionary<Key, Value>();
 
@@ -239,14 +239,14 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> AsEnumerable<T>(LinqRoot<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return e;
         }
 
         public static T FirstOrDefault<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             using (var i = e.GetEnumerator())
             {
@@ -261,8 +261,8 @@ namespace Sigil.Impl
 
         public static T FirstOrDefault<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             using (var i = e.GetEnumerator())
             {
@@ -280,7 +280,7 @@ namespace Sigil.Impl
 
         public static T First<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             using (var i = e.GetEnumerator())
             {
@@ -295,7 +295,7 @@ namespace Sigil.Impl
 
         public static T ElementAt<T>(IEnumerable<T> e, int n)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (n < 0) throw new ArgumentOutOfRangeException();
 
             using (var i = e.GetEnumerator())
@@ -311,7 +311,7 @@ namespace Sigil.Impl
 
         public static T Last<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var l = e as IList<T>;
             if (l != null)
@@ -352,7 +352,7 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> Reverse<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return LinqEnumerable<T>.For(_Reverse(e));
         }
@@ -369,8 +369,8 @@ namespace Sigil.Impl
 
         public static bool All<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             using (var i = e.GetEnumerator())
             {
@@ -404,7 +404,7 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> Skip<T>(IEnumerable<T> e, int n)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (n < 0) throw new ArgumentException("n");
 
             return LinqEnumerable<T>.For(_Skip(e, n));
@@ -412,7 +412,7 @@ namespace Sigil.Impl
 
         public static T Single<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             using (var i = e.GetEnumerator())
             {
@@ -428,7 +428,7 @@ namespace Sigil.Impl
 
         public static T SingleOrDefault<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             using (var i = e.GetEnumerator())
             {
@@ -447,7 +447,7 @@ namespace Sigil.Impl
 
         public static T SingleOrDefault<T>(IEnumerable<T> e, SigilFunc<T, bool> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             using (var i = e.GetEnumerator())
             {
@@ -485,15 +485,15 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> Cast<T>(IEnumerable e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return LinqEnumerable<T>.For(_Cast<T>(e));
         }
 
         public static bool Contains<T>(IEnumerable<T> e, T a)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (a == null) throw new ArgumentNullException("a");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (a == null) throw new ArgumentNullException(nameof(a));
 
             var comparer = EqualityComparer<T>.Default;
 
@@ -513,8 +513,8 @@ namespace Sigil.Impl
 
         public static V Aggregate<T, V>(IEnumerable<T> e, V seed, SigilFunc<V, T, V> a)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (a == null) throw new ArgumentNullException("a");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (a == null) throw new ArgumentNullException(nameof(a));
 
             using (var i = e.GetEnumerator())
             {
@@ -548,8 +548,8 @@ namespace Sigil.Impl
 
         public static LinqRoot<V> SelectMany<T, V>(IEnumerable<T> e, SigilFunc<T, IEnumerable<V>> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<V>.For(_SelectMany(e, p));
         }
@@ -577,23 +577,23 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> Distinct<T>(IEnumerable<T> e)
         {
-            if (e == null) throw new ArgumentNullException("e");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return LinqEnumerable<T>.For(_Distinct(e, EqualityComparer<T>.Default));
         }
 
         public static LinqRoot<T> Distinct<T>(IEnumerable<T> e, IEqualityComparer<T> c)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (c == null) throw new ArgumentNullException("c");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             return LinqEnumerable<T>.For(_Distinct(e, c));
         }
 
         public static LinqRoot<IGrouping<K, T>> GroupBy<T, K>(IEnumerable<T> e, SigilFunc<T, K> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             var ret = new LinqList<IGrouping<K, T>>();
             var gLookup = new Dictionary<K, Grouping<K, T>>();
@@ -701,16 +701,16 @@ namespace Sigil.Impl
 
         public static LinqRoot<T> OrderBy<T, V>(IEnumerable<T> e, SigilFunc<T, V> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<T>.For(_Order(e, p, Comparer<V>.Default));
         }
 
         public static LinqRoot<T> OrderByDescending<T, V>(IEnumerable<T> e, SigilFunc<T, V> p)
         {
-            if (e == null) throw new ArgumentNullException("e");
-            if (p == null) throw new ArgumentNullException("p");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (p == null) throw new ArgumentNullException(nameof(p));
 
             return LinqEnumerable<T>.For(_Order(e, p, DescendingComparer<V>.Default));
         }

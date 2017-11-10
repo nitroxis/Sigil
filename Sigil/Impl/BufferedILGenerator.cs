@@ -219,7 +219,7 @@ namespace Sigil.Impl
         {
             if (ix < 0 || ix >= Buffer.Count)
             {
-                throw new ArgumentOutOfRangeException("ix", "Expected value between 0 and " + Buffer.Count);
+                throw new ArgumentOutOfRangeException(nameof(ix), "Expected value between 0 and " + Buffer.Count);
             }
 
             LengthCache.Clear();
@@ -237,7 +237,7 @@ namespace Sigil.Impl
         {
             if (ix < 0 || ix > Buffer.Count)
             {
-                throw new ArgumentOutOfRangeException("ix", "Expected value between 0 and " + Buffer.Count);
+                throw new ArgumentOutOfRangeException(nameof(ix), "Expected value between 0 and " + Buffer.Count);
             }
 
             LengthCache.Clear();

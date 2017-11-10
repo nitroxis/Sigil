@@ -116,7 +116,7 @@ namespace Sigil
         {
             if (forTry == null)
             {
-                throw new ArgumentNullException("forTry");
+                throw new ArgumentNullException(nameof(forTry));
             }
 
             if (((IOwned)forTry).Owner != this)
@@ -236,12 +236,12 @@ namespace Sigil
         {
             if (exceptionType == null)
             {
-                throw new ArgumentNullException("exceptionType");
+                throw new ArgumentNullException(nameof(exceptionType));
             }
 
             if (forTry == null)
             {
-                throw new ArgumentNullException("forTry");
+                throw new ArgumentNullException(nameof(forTry));
             }
 
             if (((IOwned)forTry).Owner != this)
@@ -256,7 +256,7 @@ namespace Sigil
 
             if (!TypeHelpers.IsAssignableFrom(typeof(Exception), exceptionType))
             {
-                throw new ArgumentException("BeginCatchBlock expects a type descending from Exception, found " + exceptionType, "exceptionType");
+                throw new ArgumentException("BeginCatchBlock expects a type descending from Exception, found " + exceptionType, nameof(exceptionType));
             }
 
             var currentlyOpen = CatchBlocks.Where(c => c.Key.ExceptionBlock == forTry && c.Value.Item2 == -1).Select(s => s.Key).SingleOrDefault();
@@ -309,7 +309,7 @@ namespace Sigil
         {
             if (forCatch == null)
             {
-                throw new ArgumentNullException("forCatch");
+                throw new ArgumentNullException(nameof(forCatch));
             }
 
             if (((IOwned)forCatch).Owner != this)
@@ -363,7 +363,7 @@ namespace Sigil
         {
             if (forTry == null)
             {
-                throw new ArgumentNullException("forTry");
+                throw new ArgumentNullException(nameof(forTry));
             }
 
             if (((IOwned)forTry).Owner != this)
@@ -411,7 +411,7 @@ namespace Sigil
         {
             if (forFinally == null)
             {
-                throw new ArgumentNullException("forFinally");
+                throw new ArgumentNullException(nameof(forFinally));
             }
 
             if (((IOwned)forFinally).Owner != this)

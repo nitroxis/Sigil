@@ -25,7 +25,7 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             var curIndex = IL.Index;

@@ -205,12 +205,12 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (parameterTypes == null)
             {
-                throw new ArgumentNullException("parameterTypes");
+                throw new ArgumentNullException(nameof(parameterTypes));
             }
 
             var allCons = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
@@ -242,7 +242,7 @@ namespace Sigil
         {
             if (constructor == null)
             {
-                throw new ArgumentNullException("constructor");
+                throw new ArgumentNullException(nameof(constructor));
             }
 
             var pts = ((LinqArray<ParameterInfo>)constructor.GetParameters()).Select(p => p.ParameterType).ToArray();
@@ -260,12 +260,12 @@ namespace Sigil
         {
             if(constructor == null)
             {
-                throw new ArgumentNullException("constructor");
+                throw new ArgumentNullException(nameof(constructor));
             }
 
             if (parameterTypes == null)
             {
-                throw new ArgumentNullException("parameterTypes");
+                throw new ArgumentNullException(nameof(parameterTypes));
             }
 
             return InnerNewObject(constructor, parameterTypes);

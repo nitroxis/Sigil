@@ -49,7 +49,7 @@ namespace Sigil
         {
             if (primitiveType == null)
             {
-                throw new ArgumentNullException("primitiveType");
+                throw new ArgumentNullException(nameof(primitiveType));
             }
 
             if (!TypeHelpers.IsPrimitive(primitiveType) || primitiveType == typeof(char))
@@ -155,7 +155,7 @@ namespace Sigil
         {
             if (primitiveType == null)
             {
-                throw new ArgumentNullException("primitiveType");
+                throw new ArgumentNullException(nameof(primitiveType));
             }
 
             if (!TypeHelpers.IsPrimitive(primitiveType) || primitiveType == typeof(char))
@@ -259,7 +259,7 @@ namespace Sigil
         {
             if (primitiveType == null)
             {
-                throw new ArgumentNullException("primitiveType");
+                throw new ArgumentNullException(nameof(primitiveType));
             }
 
             if (!TypeHelpers.IsPrimitive(primitiveType) || primitiveType == typeof(char))

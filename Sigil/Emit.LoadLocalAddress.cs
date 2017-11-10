@@ -15,7 +15,7 @@ namespace Sigil
         {
             if (local == null)
             {
-                throw new ArgumentNullException("local");
+                throw new ArgumentNullException(nameof(local));
             }
 
             if (((IOwned)local).Owner != this)
@@ -62,7 +62,7 @@ namespace Sigil
         /// </summary>
         public Emit<DelegateType> LoadLocalAddress(string name)
         {
-            if (name == null) throw new ArgumentNullException("name");
+            if (name == null) throw new ArgumentNullException(nameof(name));
 
             return LoadLocalAddress(Locals[name]);
         }

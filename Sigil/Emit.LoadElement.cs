@@ -27,7 +27,7 @@ namespace Sigil
         {
             if (elementType == null)
             {
-                throw new ArgumentNullException("elementType");
+                throw new ArgumentNullException(nameof(elementType));
             }
 
             OpCode? instr = null;

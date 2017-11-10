@@ -49,7 +49,7 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             name = name ?? AutoNamer.Next(this, "_local", Locals.Names, Labels.Names);

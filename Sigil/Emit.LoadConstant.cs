@@ -146,7 +146,7 @@ namespace Sigil
         {
             if (field == null)
             {
-                throw new ArgumentNullException("field");
+                throw new ArgumentNullException(nameof(field));
             }
 
             UpdateState(OpCodes.Ldtoken, field, Wrap(StackTransition.Push<RuntimeFieldHandle>(), "LoadConstant"));
@@ -161,7 +161,7 @@ namespace Sigil
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method");
+                throw new ArgumentNullException(nameof(method));
             }
 
             UpdateState(OpCodes.Ldtoken, method, TypeHelpers.EmptyTypes, Wrap(StackTransition.Push<RuntimeMethodHandle>(), "LoadConstant"));
@@ -184,7 +184,7 @@ namespace Sigil
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             UpdateState(OpCodes.Ldtoken, type, Wrap(StackTransition.Push<RuntimeTypeHandle>(), "LoadConstant"));

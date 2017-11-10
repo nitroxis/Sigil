@@ -72,12 +72,12 @@ namespace Sigil.NonGeneric
         {
             if (returnType == null)
             {
-                throw new ArgumentNullException("returnType");
+                throw new ArgumentNullException(nameof(returnType));
             }
 
             if (parameterTypes == null)
             {
-                throw new ArgumentNullException("parameterTypes");
+                throw new ArgumentNullException(nameof(parameterTypes));
             }
 
             for (var i = 0; i < parameterTypes.Length; i++)
@@ -340,12 +340,12 @@ namespace Sigil.NonGeneric
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             Emit<NonGenericPlaceholderDelegate>.CheckAttributesAndConventions(attributes, callingConvention);
@@ -467,7 +467,7 @@ namespace Sigil.NonGeneric
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             Emit<NonGenericPlaceholderDelegate>.CheckAttributesAndConventions(attributes, callingConvention);
@@ -519,7 +519,7 @@ namespace Sigil.NonGeneric
         {
             if (type == null) 
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             var innerEmit = Emit<NonGenericPlaceholderDelegate>.MakeNonGenericEmit(CallingConventions.Standard, typeof(void), TypeHelpers.EmptyTypes, allowUnverifiableCode, doVerify, strictBranchVerification);

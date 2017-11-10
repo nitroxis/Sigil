@@ -22,7 +22,7 @@ namespace Sigil
         {
             if (valueType == null)
             {
-                throw new ArgumentNullException("valueType");
+                throw new ArgumentNullException(nameof(valueType));
             }
 
             if (!TypeHelpers.IsValueType(valueType))

@@ -15,7 +15,7 @@ namespace Sigil
         {
             if (labels == null)
             {
-                throw new ArgumentNullException("labels");
+                throw new ArgumentNullException(nameof(labels));
             }
 
             if (labels.Length == 0)
@@ -76,7 +76,7 @@ namespace Sigil
         /// </summary>
         public Emit<DelegateType> Switch(params string[] names)
         {
-            if (names == null) throw new ArgumentNullException("names");
+            if (names == null) throw new ArgumentNullException(nameof(names));
 
             var lNames = (LinqArray<string>)names;
 

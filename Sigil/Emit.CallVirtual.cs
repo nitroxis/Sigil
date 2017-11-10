@@ -21,7 +21,7 @@ namespace Sigil
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method");
+                throw new ArgumentNullException(nameof(method));
             }
 
             if (method.IsStatic)

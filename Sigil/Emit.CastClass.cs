@@ -34,7 +34,7 @@ namespace Sigil
         {
             if (referenceType == null)
             {
-                throw new ArgumentNullException("referenceType");
+                throw new ArgumentNullException(nameof(referenceType));
             }
 
             if (TypeHelpers.IsValueType(referenceType))
